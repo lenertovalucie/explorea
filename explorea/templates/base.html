@@ -8,6 +8,15 @@
 </head>
 <body>
     <h1>EVENTS</h1>
+
+    <div>
+        {% if user.is_authenticated %}
+        <a href="/accounts/logout/">LOG OUT</a>
+        {% else %}
+        <a href="/accounts/login/">LOG IN</a>
+        {% endif %}
+    </div>
+    
     {% block content %}
     
     {% endblock content %}
