@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Event, EventRun
-from .forms import EventForm
+from .forms import EventForm, EventRunForm
 
 
 def index(request):
@@ -32,7 +32,6 @@ def event_new(request):
     form = EventForm()
     return render(request, 'events/event_new.html', {'form': form} )
 
-
 def event_edit(request, name):
     event = Event.objects.get(name=name)
 
@@ -50,3 +49,18 @@ def event_delete(request, name):
     event = Event.objects.get(name=name).delete()
 
     return redirect('events')
+
+def run_new(request, name):
+    event = Event.objects.get(name=name)
+
+    if request.method == 'POST':
+        form = EventRunForm(request.POST)
+
+        if form.is_valid():
+            new_form = form.save(commit=False) # Create, but don't save the new instance.
+            new_form.event = event
+            new_form.save()
+            return redirect('events')
+
+    form = EventRunForm()
+    return render(request, 'events/run_new.html', {'form': form} )

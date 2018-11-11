@@ -14,6 +14,7 @@
     {% for run in runs %}
     <li>HAPPENS: {{ run.happens}} SEATS: {{ run.seats_available }} PRICE: {{ run.price }}
     {% endfor %}
+    <p><a href="/event/{{event.name}}/new_run">new run</a></p>
     </ul>   
 
 {% endblock content %}
