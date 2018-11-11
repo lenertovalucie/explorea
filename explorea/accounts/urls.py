@@ -8,4 +8,6 @@ urlpatterns = [
     #path('logout/', auth_views.LogoutView.as_view(template_name='accounts/logged_out.html'), name='logout'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/events/'), name='logout'),
     path('profile/', views.profile, name='profile'),
+    path('register/', views.register, name='register'),
+    path('profile/edit/', views.edit_profile, name='edit_profile'),
 ]
