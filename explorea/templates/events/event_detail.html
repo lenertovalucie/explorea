@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>{{ event}}</title>
+{% endblock title %}
+
+{% block content %}
+    <h2>{{ event}}</h2>
+    <p>LOCATION: {{ event.location}} DESCRIPTION: {{ event.description }} CATEGORY: {{ event.category}}</p>
+    <h3>Event runs</h3>
+    <ul>
+    {% for run in runs %}
+    <li>HAPPENS: {{ run.happens}} SEATS: {{ run.seats_available }} PRICE: {{ run.price }}
+    {% endfor %}
+    </ul>   
+{% endblock content %}
