@@ -1,16 +1,19 @@
 {% extends 'base.html' %}
 
-{% block title %}
-<title>{{ event}}</title>
-{% endblock title %}
+{% block title %}<title>{{ event}}</title>{% endblock title %}
 
 {% block content %}
+
     <h2>{{ event}}</h2>
-    <p>LOCATION: {{ event.location}} DESCRIPTION: {{ event.description }} CATEGORY: {{ event.category}}</p>
+    <a href="/event/{{event.name}}/delete">delete</a>
+    <a href="/event/{{event.name}}/edit">update</a>
+    <p>LOCATION: {{ event.location}} DESCRIPTION: {{ event.description }} CATEGORY: {{ event.category}} HOST: {{ event.host }}</p>
     <h3>Event runs</h3>
+
     <ul>
     {% for run in runs %}
     <li>HAPPENS: {{ run.happens}} SEATS: {{ run.seats_available }} PRICE: {{ run.price }}
     {% endfor %}
     </ul>   
+
 {% endblock content %}
