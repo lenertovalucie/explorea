@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{{ user }}
+<br>
+<table>
+    <tr>
+        <td>Username: </td><td>{{ user.username }}</td>
+    </tr>
+    <tr>
+        <td>First Name: </td><td>{{ user.first_name }}</td>
+    </tr>
+    <tr>
+        <td>Last Name: </td><td>{{ user.last_name }}</td>
+    </tr>
+    <tr>
+        <td>Email: </td><td>{{ user.email }}</td>
+    </tr>
+     <tr>
+        <td>Joined: </td><td>{{ user.date_joined }}</td>
+    </tr>
+</table>
+
+
+<br><br>
+
+{% if user.is_authenticated %}
+<a href="/accounts/profile/edit/">Edit</a>
+<a href="/accounts/change-password/">Change Password</a>
+{% endif %}
+
 {% endblock content %}
