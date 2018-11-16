@@ -24,6 +24,8 @@ def register(request):
             login(request, user)
 
             return redirect('profile')
+        else:
+            return render(request, 'accounts/register.html', {'form': form} )
 
     form = RegisterForm()
     return render(request, 'accounts/register.html', {'form': form} )
@@ -49,6 +51,8 @@ def change_password(request):
             user = form.save()
             update_session_auth_hash(request, user)
             return redirect('/accounts/profile/')
+        else:
+            return render(request, 'accounts/change_password.html', {'form': form})
 
     form = PasswordChangeForm(user=request.user)
     return render(request, 'accounts/change_password.html', {'form': form})
