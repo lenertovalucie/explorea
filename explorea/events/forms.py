@@ -18,7 +18,7 @@ class EventRunForm(forms.ModelForm):
     class Meta:
         model = EventRun
         fields = [
-            'happens',
+
             'seats_available',
             'price'
         ]
