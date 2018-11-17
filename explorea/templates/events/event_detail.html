@@ -12,7 +12,7 @@
 
     <ul>
     {% for run in runs %}
-    <li>HAPPENS: {{ run.happens}} SEATS: {{ run.seats_available }} PRICE: {{ run.price }}
+    <li>HAPPENS: {{ run.happens}} SEATS: {{ run.seats_available }} PRICE: {{ run.price }} <a href="/events/updateRun/{{run.id}}">update run</a> <a href="/events/deleteRun/{{run.id}}">delete run</a>
     {% endfor %}
     <p><a href="/events/{{event.id}}/newRun">new run</a></p>
     </ul>   

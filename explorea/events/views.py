@@ -40,7 +40,7 @@ def update_event(request, pk):
 
         if form.is_valid():
             form.save()
-            return redirect('events')
+            return redirect('/events/detail/{}'.format(pk))
 
     form = EventForm(instance=event)
     return render(request, 'events/update_event.html', {'form': form} )
@@ -60,7 +60,29 @@ def create_event_run(request, event_id):
             new_form = form.save(commit=False) # Create, but don't save the new instance.
             new_form.event = event
             new_form.save()
-            return redirect('events')
+            return redirect('/events/detail/{}'.format(event_id))
 
     form = EventRunForm()
     return render(request, 'events/create_even_run.html', {'form': form} )
+
+def update_event_run(request, event_run_id):
+    event_run = EventRun.objects.get(pk=event_run_id)
+
+    if request.method == 'POST':
+        form = EventRunForm(request.POST, instance=event_run)
+
+        if form.is_valid():
+            form.save()
+            event_id = event_run.event.id
+            return redirect('/events/detail/{}'.format(event_id))
+
+    form = EventRunForm(instance=event_run)
+    return render(request, 'events/update_event.html', {'form': form} )
+
+def delete_event_run(request, event_run_id):
+    event_run = EventRun.objects.get(id=event_run_id)
+    event_id = event_run.event.id
+    event_run.delete()
+
+    return redirect('/events/detail/{}'.format(event_id))
+
