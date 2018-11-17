@@ -12,13 +12,13 @@ def event_listing(request):
 
     return render(request, 'events/event_listing.html', {'events': events})
 
-def event_detail(request, name):
-    event = Event.objects.get(name=name)
+def event_detail(request, pk):
+    event = Event.objects.get(id=pk)
     runs = EventRun.objects.filter(event=event)
 
     return render(request, 'events/event_detail.html', {'runs': runs, 'event':event})
 
-def event_new(request):
+def create_event(request):
 
     if request.method == 'POST':
         form = EventForm(request.POST)
@@ -30,10 +30,10 @@ def event_new(request):
             return redirect('events')
 
     form = EventForm()
-    return render(request, 'events/event_new.html', {'form': form} )
+    return render(request, 'events/create_event.html', {'form': form} )
 
-def event_edit(request, name):
-    event = Event.objects.get(name=name)
+def update_event(request, pk):
+    event = Event.objects.get(id=pk)
 
     if request.method == 'POST':
         form = EventForm(request.POST, instance=event)
@@ -43,15 +43,15 @@ def event_edit(request, name):
             return redirect('events')
 
     form = EventForm(instance=event)
-    return render(request, 'events/event_edit.html', {'form': form} )
+    return render(request, 'events/update_event.html', {'form': form} )
 
-def event_delete(request, name):
-    event = Event.objects.get(name=name).delete()
+def delete_event(request, pk):
+    event = Event.objects.get(id=pk).delete()
 
     return redirect('events')
 
-def run_new(request, name):
-    event = Event.objects.get(name=name)
+def create_event_run(request, event_id):
+    event = Event.objects.get(id=event_id)
 
     if request.method == 'POST':
         form = EventRunForm(request.POST)
@@ -63,4 +63,4 @@ def run_new(request, name):
             return redirect('events')
 
     form = EventRunForm()
-    return render(request, 'events/run_new.html', {'form': form} )
+    return render(request, 'events/create_even_run.html', {'form': form} )

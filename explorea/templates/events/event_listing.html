@@ -6,7 +6,7 @@
 
     <ul>
     {% for event in events %}
-    <li><b>{{ event.name }}</b> ({{ event.location}}) <a href="/event/{{event.name}}">detail</a>
+    <li><b>{{ event.name }}</b> ({{ event.location}}) <a href="/events/detail/{{event.id}}">detail</a>
     {% endfor %}
     </ul>
 

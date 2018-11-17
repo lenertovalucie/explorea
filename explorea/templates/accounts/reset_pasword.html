@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+<title>Password Reset</title>
+{% endblock title %}
+
+{% block content %}
+<div>
+
+  <h2>Password Reset</h2>
+  <p>Enter your email below and click "Submit". We will send you the reset link to your email immediately.</p>
+  
+  <form method="post">
+    {% csrf_token %}
+
+    {% for field in form.visible_fields %}
+        {% for error in field.errors %}
+        {{ error }}
+        {% endfor %}
+
+        <p>{{ field.label_tag}} {{ field }}</p>
+
+    {% endfor %}
+    
+    <button type="submit">Save</button>
+  </form>
+  
+</div>
+{% endblock content %}

@@ -5,9 +5,9 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('events/', views.event_listing, name='events'),
-    path('events/new', views.event_new, name='new'),
-    path('event/<str:name>', views.event_detail, name='detail'),
-    path('event/<str:name>/edit', views.event_edit, name='edit'),
-    path('event/<str:name>/delete', views.event_delete, name='delete'),
-    path('event/<str:name>/new_run', views.run_new, name='run_new'),
+    path('events/detail/<int:pk>', views.event_detail, name='detail'),
+    path('events/update/<int:pk>', views.update_event, name='update_event'),
+    path('events/delete/<int:pk>', views.delete_event, name='delete_event'),
+    path('events/new/', views.create_event, name='create_event'),
+    path('events/<int:event_id>/newRun/', views.create_event_run, name='create_event_run'),
 ]

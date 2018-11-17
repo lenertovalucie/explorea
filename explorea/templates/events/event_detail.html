@@ -5,8 +5,8 @@
 {% block content %}
 
     <h2>{{ event}}</h2>
-    <a href="/event/{{event.name}}/delete">delete</a>
-    <a href="/event/{{event.name}}/edit">update</a>
+    <a href="/events/delete/{{event.id}}">delete</a>
+    <a href="/events/update/{{event.id}}">update</a>
     <p>LOCATION: {{ event.location}} DESCRIPTION: {{ event.description }} CATEGORY: {{ event.category}} HOST: {{ event.host }}</p>
     <h3>Event runs</h3>
 
@@ -14,7 +14,7 @@
     {% for run in runs %}
     <li>HAPPENS: {{ run.happens}} SEATS: {{ run.seats_available }} PRICE: {{ run.price }}
     {% endfor %}
-    <p><a href="/event/{{event.name}}/new_run">new run</a></p>
+    <p><a href="/events/{{event.id}}/newRun">new run</a></p>
     </ul>   
 
 {% endblock content %}
