@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from datetime import datetime as dt
 
 
@@ -24,7 +24,7 @@ class Event(models.Model):
         choices = CATEGORY_CHOICES,
         default = FUN,
     )
-    host = models.ForeignKey(User, 
+    host = models.ForeignKey(settings.AUTH_USER_MODEL, 
         on_delete=models.CASCADE)
 
     def __str__(self):
