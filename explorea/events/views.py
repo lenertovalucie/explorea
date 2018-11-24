@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Event, EventRun
 from .forms import EventForm, EventRunForm
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -12,12 +13,14 @@ def event_listing(request):
 
     return render(request, 'events/event_listing.html', {'events': events})
 
+@login_required
 def event_detail(request, pk):
     event = Event.objects.get(id=pk)
     runs = EventRun.objects.filter(event=event)
 
     return render(request, 'events/event_detail.html', {'runs': runs, 'event':event})
 
+@login_required
 def create_event(request):
 
     if request.method == 'POST':
@@ -32,6 +35,7 @@ def create_event(request):
     form = EventForm()
     return render(request, 'events/create_event.html', {'form': form} )
 
+@login_required
 def update_event(request, pk):
     event = Event.objects.get(id=pk)
 
@@ -45,11 +49,13 @@ def update_event(request, pk):
     form = EventForm(instance=event)
     return render(request, 'events/update_event.html', {'form': form} )
 
+@login_required
 def delete_event(request, pk):
     event = Event.objects.get(id=pk).delete()
 
     return redirect('events')
 
+@login_required
 def create_event_run(request, event_id):
     event = Event.objects.get(id=event_id)
 
@@ -65,6 +71,7 @@ def create_event_run(request, event_id):
     form = EventRunForm()
     return render(request, 'events/create_even_run.html', {'form': form} )
 
+@login_required
 def update_event_run(request, event_run_id):
     event_run = EventRun.objects.get(pk=event_run_id)
 
@@ -79,6 +86,7 @@ def update_event_run(request, event_run_id):
     form = EventRunForm(instance=event_run)
     return render(request, 'events/update_event.html', {'form': form} )
 
+@login_required
 def delete_event_run(request, event_run_id):
     event_run = EventRun.objects.get(id=event_run_id)
     event_id = event_run.event.id

@@ -19,6 +19,9 @@ APPS_DIR = os.path.join(BASE_DIR, 'explorea')
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 
+LOGIN_URL = '/accounts/login/'
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
