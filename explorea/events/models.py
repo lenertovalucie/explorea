@@ -35,8 +35,8 @@ class EventRun(models.Model):
 
     event = models.ForeignKey(Event, 
         on_delete=models.CASCADE)
-    date = models.DateField(blank=False, null=False, default=dt(2018,6,17,18,30))
-    time = models.TimeField(blank=False, null=False, default=dt(2018,6,17,18,30))
+    date = models.DateField(blank=False, null=False) #TODO there shouldnt be default???
+    time = models.TimeField(blank=False, null=False)
     seats_available = models.PositiveIntegerField(blank=False, null=False)
     price = models.DecimalField(max_digits=10, 
         decimal_places=2, blank=False, null=False)
